@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# apt and apt-get
 sudo apt update
 sudo apt-get update
 sudo apt upgrade
 sudo apt-get upgrade
 sudo apt dist-upgrade
+
+# flatpak
+sudo flatpak update
