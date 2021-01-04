@@ -1,0 +1,15 @@
+#!/bin/python3
+
+import os
+import sys
+
+try:
+	file_name = sys.argv[1]
+except IndexError:
+	print("Please suply a file name in the form of ``editf file_name``")
+	exit()
+
+os.system(f"sudo touch {file_name}")
+os.system(f"sudo chmod a+rw {file_name}")
+os.system(f"sudo nano {file_name}")
+
