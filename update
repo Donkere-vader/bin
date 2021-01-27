@@ -9,3 +9,4 @@ sudo apt dist-upgrade
 
 # flatpak
 sudo flatpak update
+flatpak update
