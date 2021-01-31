@@ -1,0 +1,23 @@
+#!/bin/python3
+
+import requests
+import json
+import sys
+
+URL = "http://ip-api.com/json/"
+GOOGLE_MAPS_URL = "https://www.google.com/maps/search/?api=1&query="
+
+try:
+    ip_addr = sys.argv[1]
+except IndexError:
+    print("Please supply an ip address ``locateip {ip_addr}``")
+    exit()
+
+req = requests.get(f"{URL}{ip_addr}")
+data = json.loads(req.content.decode())
+
+for key in data:
+    print(f"{key}: {data[key]}")
+
+print()
+print(f"Google maps: {GOOGLE_MAPS_URL}{data['lat']},{data['lon']}")
