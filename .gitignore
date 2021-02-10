@@ -5,3 +5,6 @@
 startvps
 tmpmail
 
+# python
+__pycache__
+
