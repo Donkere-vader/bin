@@ -2,4 +2,8 @@
 
 USERNAME="donkerevader"
 
+# mount Games and Games 2 drives
 /home/$USERNAME/bin/mount_drives
+
+# run updates on ~/sandbox
+/home/$USERNAME/bin/sandbox_update.py
