@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import argparse
+import json
+import os
+
+real_path = os.path.dirname(os.path.realpath(__file__))
+FILE_NAME = real_path + '/myssh.json'
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('servername', metavar='SERVERNAME', type=str, help='the name of the ssh server')
+parser.add_argument('--add', action='store_true', help='add a server')
+parser.add_argument('--username', help='Username for the server (if \'--add\' flag also present)')
+parser.add_argument('--address', help='Address for the server (if \'--add\' flag also present)')
+
+parser.add_argument('--remove', action='store_true', help='Remove a server (Warning: you won\'t be asked to confirm)')
+
+args = parser.parse_args()
+
+if not os.path.isfile(FILE_NAME):
+    json.dump({}, open(FILE_NAME, 'w'))  # create the file
+
+db = json.load(open(FILE_NAME, 'r'))
+
+if args.add:  # add new server
+    if args.username is None or args.address is None:
+        print("\u001b[31mERROR: --username and --address are required for adding a ssh server\u001b[0;0;0m")
+        exit(1)
+    db[args.servername] = {
+        "username": args.username,
+        "address": args.address,
+    }
+elif args.remove:
+    if args.servername in db:
+        del db[args.servername]
+else:  # open
+    if args.servername in db:
+        os.system(f"ssh {db[args.servername]['username']}@{db[args.servername]['address']}")
+    else:
+        print(f"\u001b[31mERROR: Server {args.servername} not in myssh.json \u001b[0;0;0m")
+        exit(1)
+
+# write changes
+json.dump(db, open(FILE_NAME, 'w'), indent=4)

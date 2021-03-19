@@ -2,9 +2,10 @@
 *.save
 
 # prive scripts
-startvps
 tmpmail
 
 # python
 __pycache__
 
+# private database files
+myssh.json
