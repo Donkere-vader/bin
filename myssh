@@ -8,8 +8,10 @@ real_path = os.path.dirname(os.path.realpath(__file__))
 FILE_NAME = real_path + '/myssh.json'
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('servername', metavar='SERVERNAME', type=str, help='the name of the ssh server')
+parser.add_argument('servername', metavar='SERVERNAME', type=str, help='the name of the ssh server', nargs="?", default="")
 parser.add_argument('--add', action='store_true', help='add a server')
+parser.add_argument('--list', action='store_true', help='get list off all servers')
+parser.add_argument('--info', action='store_true', help='get info about server. Or info about all servers if SERVERNAME ==  ''')
 parser.add_argument('--username', help='Username for the server (if \'--add\' flag also present)')
 parser.add_argument('--address', help='Address for the server (if \'--add\' flag also present)')
 
@@ -22,7 +24,18 @@ if not os.path.isfile(FILE_NAME):
 
 db = json.load(open(FILE_NAME, 'r'))
 
-if args.add:  # add new server
+if args.info:
+    print(f"Server: {args.servername}")
+    print(f"    Username: {db[args.servername]['username']}")
+    print(f"    Address:  {db[args.servername]['address']}")
+    print()
+elif args.list:
+    for sname in db:
+        print(f"Server: {sname}")
+        print(f"    Username: {db[sname]['username']}")
+        print(f"    Address:  {db[sname]['address']}")
+        print()
+elif args.add:  # add new server
     if args.username is None or args.address is None:
         print("\u001b[31mERROR: --username and --address are required for adding a ssh server\u001b[0;0;0m")
         exit(1)
