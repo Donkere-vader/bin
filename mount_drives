@@ -1,9 +1,0 @@
-#!/bin/bash
-
-USER_NAME="donkerevader";
-
-mkdir /media/$USER_NAME/Games;
-mkdir /media/$USER_NAME/Games2;
-
-mount /dev/sdb1 /media/$USER_NAME/Games2;
-mount /dev/sdc2 /media/$USER_NAME/Games;

@@ -11,7 +11,10 @@ case $1 in
         export PS1="\e[32;1m\w\[$(tput sgr0)\]\e[0;0;0m$ "
         ;;
     "enter")
-        export PS1="\[$(tput bold)\]\[\033[94m\]\u\[$(tput sgr0)\]\[\033[94;1m\]@\h\[$(tput sgr0)\]:\[\033[1;94m\]\[$(tput sgr0)\]\[\033[32;1m\]\w\[$(tput sgr0)\]\n\\$\[$(tput sgr0)\] "
+        export PS1="⎡\[$(tput bold)\]\[\033[94m\]\u\[$(tput sgr0)\]\[\033[94;1m\]@\h\[$(tput sgr0)\]:\[\033[1;94m\]\[$(tput sgr0)\]\[\033[32;1m\]\w\[$(tput sgr0)\]\n⎣\\$\[$(tput sgr0)\] "
+        ;;
+    "entersmall")
+        export PS1='\[\e[0;1m\]⎡ \[\e[0;94m\]\w \[\e[0m\](\[\e[0;92m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0m\])\n\[\e[0;1m\]⎣ \[\e[0m\]$ \[\e[0m\]' 
         ;;
     *)
         echo "Unknown prompt type '$1'"

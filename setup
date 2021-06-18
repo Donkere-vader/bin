@@ -1,4 +1,9 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+echo "Setting up bash files"
 cp $DIR/bash_files/.bash_aliases ~/
+source ~/.bash_aliases
+
+echo "Setup succesfull"

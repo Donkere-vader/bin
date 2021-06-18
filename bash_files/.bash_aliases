@@ -14,6 +14,8 @@ alias v="nvim"
 alias files="nautilus"
 alias edex="~/edex.AppImage"
 alias q="exit"
+alias stfu="poweroff"
+alias g="git"
 
 # corrections
 alias "cd.."="cd .."
