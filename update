@@ -1,12 +1,36 @@
-#!/bin/bash
+#!/bin/python3
 
-# apt and apt-get
-sudo apt update
-sudo apt-get update
-sudo apt upgrade
-sudo apt-get upgrade
-sudo apt dist-upgrade
+import os
+import argparse
 
-# flatpak
-sudo flatpak update
-flatpak update
+
+parser = argparse.ArgumentParser("Updater", description="Update all apt and flathub packages")
+
+parser.add_argument(
+    "-y", "--yes",
+    action='store_const',
+    const=True,
+    default=False,
+    help="To force yes on update",
+)
+
+args = parser.parse_args()
+
+commands = [
+    "sudo apt-get update",
+    "sudo apt update",
+    "sudo apt-get upgrade",
+    "sudo apt upgrade",
+    "sudo apt dist-upgrade",
+    "sudo flatpak update",
+    "flatpak update",
+]
+
+print("[== UPDATING PACKAGES ==]")
+
+for command in commands:
+    if args.yes:
+        command += " -y"
+
+    print(f"\n$ {command}")
+    os.system(command)
