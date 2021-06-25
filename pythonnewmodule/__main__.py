@@ -4,6 +4,20 @@ import pathlib
 
 print("Setting up new project...")
 
+def to_camel_case(string) -> str:
+    new_str = ""
+    next_cap = True
+    for let in string:
+        if let == "_":
+            next_cap = True
+            continue
+        
+        new_str += let.upper() if next_cap else let.lower()
+        next_cap = False
+
+    return new_str
+
+
 try:
     project_name = sys.argv[1]
 except IndexError:
@@ -29,9 +43,13 @@ with open(".gitignore", 'wb') as f:
     f.write(git_ignore_content)
 
 print("Creating python files...")
-open(f"{project_name}/__init__.py", 'w')
-open(f"{project_name}/__main__.py", 'w')
-open("__main__.py", 'w')
+init_file = open(f"{project_name}/__init__.py", 'w')
+init_file.write(f"from .{project_name} import {to_camel_case(project_name)}")
+init_file.close()
+
+main_file = open(f"{project_name}/{project_name}.py", 'w')
+main_file.write(f"\n\nclass {to_camel_case(project_name)}:\n    def __init__(self):\n        pass")
+main_file.close()
 
 print("Initializing git repo...")
 os.system("git init")
