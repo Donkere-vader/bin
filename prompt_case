@@ -14,13 +14,13 @@ case $1 in
         export PS1="$ "
         ;;
     "enter")
-        export PS1='\[\e[0;1m\]⎡ \[\e[0;1;94m\]\u\[\e[0;1;94m\]@\[\e[0;1;94m\]\H\[\e[0m\]:\[\e[0;1;92m\]\w\n\[\e[0;1m\]⎣ \[\e[0m\]$\[\e[0m\] '
+        export PS1='\[\e[0;1m\]╭ \[\e[0;1;94m\]\u\[\e[0;1;94m\]@\[\e[0;1;94m\]\H\[\e[0m\]:\[\e[0;1;92m\]\w\n\[\e[0;1m\]╰ \[\e[0m\]$\[\e[0m\] '
         ;;
     "entersmall")
-        export PS1='\[\e[0;1m\]⎡ \[\e[0;1;94m\]\w \[\e[0;1m\](\[\e[0;1;92m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;1m\])\n\[\e[0;1m\]⎣ \[\e[0m\]$ \[\e[0m\]'
+        export PS1='\[\e[0;1m\]╭ \[\e[0;1;94m\]\w \[\e[0;1m\](\[\e[0;1;92m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;1m\])\n\[\e[0;1m\]╰ \[\e[0m\]$ \[\e[0m\]'
         ;;
     "entersmall2")
-        export PS1='\[\e[0;1m\]⎡ \[\e[0;1;94m\]\W \[\e[0;1m\](\[\e[0;1;92m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;1m\])\n\[\e[0;1m\]⎣ \[\e[0m\]$ \[\e[0m\]' 
+        export PS1='\[\e[0;1m\]╭ \[\e[0;1;94m\]\W \[\e[0;1m\](\[\e[0;1;92m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;1m\])\n\[\e[0;1m\]╰ \[\e[0m\]$ \[\e[0m\]' 
         ;;
     *)
         echo "Unknown prompt type '$1'"
